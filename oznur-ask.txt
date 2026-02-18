@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Öznur'a ❤️</title>
+
+<style>
+body{
+margin:0;
+padding:0;
+background: radial-gradient(ellipse at bottom, #0d1b2a 0%, #000000 100%);
+font-family:'Segoe UI',sans-serif;
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+/* Yıldızlar */
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+opacity:0.8;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+/* Kayan yıldız */
+.shooting-star{
+position:absolute;
+width:150px;
+height:2px;
+background:linear-gradient(-45deg, white, rgba(255,255,255,0));
+opacity:0.8;
+transform:rotate(45deg);
+animation:shoot 5s linear infinite;
+}
+
+@keyframes shoot{
+0%{
+top:-10%;
+left:-10%;
+opacity:0;
+}
+10%{opacity:1;}
+100%{
+top:110%;
+left:110%;
+opacity:0;
+}
+}
+
+/* Intro */
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:10;
+transition:1.5s;
+}
+
+/* Main */
+#main{
+display:none;
+padding-top:80px;
+position:relative;
+z-index:5;
+}
+
+h2{
+font-size:3em;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #fff;}
+to{text-shadow:0 0 30px #ff1e56;}
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+margin:15px;
+}
+
+#yes{background:#ff1e56;color:white;}
+#no{background:white;color:#ff1e56;position:absolute;}
+
+input{
+padding:10px;
+border-radius:10px;
+border:none;
+text-align:center;
+font-size:16px;
+margin-top:10px;
+}
+
+/* Kalpler */
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-900px);opacity:0;}
+}
+
+/* Şifre alanı */
+#passwordArea{display:none;margin-top:20px;}
+
+/* Mektup */
+#letter{
+display:none;
+position:fixed;
+bottom:-100%;
+left:50%;
+transform:translateX(-50%);
+width:85%;
+max-width:400px;
+background:white;
+color:#333;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 25px rgba(255,0,90,0.8);
+transition:1s;
+z-index:20;
+}
+
+#letter h3{color:#ff1e56;margin-top:0;}
+</style>
+</head>
+
+<body>
+
+<!-- Yıldızlar -->
+<script>
+for(let i=0;i<120;i++){
+let star=document.createElement("div");
+star.className="star";
+star.style.top=Math.random()*100+"%";
+star.style.left=Math.random()*100+"%";
+star.style.animationDuration=(Math.random()*3+1)+"s";
+document.body.appendChild(star);
+}
+</script>
+
+<div class="shooting-star"></div>
+
+<div id="intro">
+<h1>Bu gece yıldızlar senin için parlıyor Öznur ✨</h1>
+<br>
+<button onclick="startExperience()">Başlat</button>
+</div>
+
+<div id="main">
+<h2>Öznur 💖</h2>
+<p>Yıldızlar şahit olsun...</p>
+<p>Benimle sonsuza kadar olur musun?</p>
+
+<button id="yes">Evet 😍</button>
+<button id="no">Hayır 🙈</button>
+
+<div id="passwordArea">
+<p>💌 Gizli mektup için özel tarihi gir...</p>
+<input type="text" id="passwordInput" placeholder="25 eylül 2025">
+<br>
+<button onclick="checkPassword()">Mektubu Aç</button>
+</div>
+</div>
+
+<div id="letter">
+<h3>Öznur'a...</h3>
+<p>
+25 Eylül 2025…  
+Bu tarih sadece bir gün değil,  
+benim kalbimin sana tamamen ait olduğu an.  
+
+Tıpkı kayan bir yıldız gibi,  
+hayatıma girdin ve her şeyi aydınlattın.  
+
+Seni sonsuza kadar seveceğim. ❤️  
+</p>
+</div>
+
+<iframe id="music"
+width="0" height="0"
+src=""
+frameborder="0"
+allow="autoplay">
+</iframe>
+
+<script>
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+const passwordArea=document.getElementById("passwordArea");
+const letter=document.getElementById("letter");
+const music=document.getElementById("music");
+
+function startExperience(){
+document.getElementById("intro").style.opacity="0";
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+document.getElementById("main").style.display="block";
+},1500);
+
+music.src="https://www.youtube.com/embed/6Xx0kNq9m6Y?autoplay=1&loop=1&playlist=6Xx0kNq9m6Y";
+}
+
+noBtn.addEventListener("mouseover",function(){
+const x=Math.random()*(window.innerWidth-100);
+const y=Math.random()*(window.innerHeight-50);
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+});
+
+yesBtn.addEventListener("click",function(){
+for(let i=0;i<80;i++){
+let heart=document.createElement("div");
+heart.innerHTML="💖";
+heart.className="heart";
+heart.style.left=Math.random()*window.innerWidth+"px";
+heart.style.top=window.innerHeight+"px";
+heart.style.fontSize=(Math.random()*25+10)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove();},5000);
+}
+passwordArea.style.display="block";
+});
+
+function checkPassword(){
+let input=document.getElementById("passwordInput").value.trim().toLowerCase();
+if(input==="25 eylül 2025"){
+letter.style.display="block";
+setTimeout(()=>{
+letter.style.bottom="50%";
+letter.style.transform="translate(-50%,50%)";
+},100);
+}else{
+alert("Bu tarih yıldızların bildiği özel gün değil ✨");
+}
+}
+</script>
+
+</body>
+</html>
